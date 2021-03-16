@@ -8,7 +8,7 @@ import 'package:freemework/freemework.dart'
         AggregateException,
         CancellationCallback,
         CancellationToken,
-        FrameworkException;
+        FreemeworkException;
 
 import 'CancellationTokenSource.dart';
 
@@ -41,7 +41,7 @@ class ManualCancellationTokenSource implements CancellationTokenSource {
         cancellationException = e;
       }
 
-      final errors = <FrameworkException>[];
+      final errors = <FreemeworkException>[];
 
       // Release callback. We do not need its anymore
       final cancelListeners = List<CancellationCallback>.from(_cancelListeners);
@@ -49,7 +49,7 @@ class ManualCancellationTokenSource implements CancellationTokenSource {
         try {
           cancelListener(cancellationException);
         } catch (e) {
-          errors.add(FrameworkException.wrapIfNeeded(e));
+          errors.add(FreemeworkException.wrapIfNeeded(e));
         }
       }
 
