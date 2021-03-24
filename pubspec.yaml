@@ -2,8 +2,8 @@ name: freemework_cancellation
 description: Set of various cancellation token sources of the Freemework
 version: 0.0.1
 homepage: https://freemework.org
-repository: https://github.com/freemework/dart
-issue_tracker: https://github.com/freemework/dart/issues
+repository: https://github.com/freemework/dart.cancellation
+issue_tracker: https://github.com/freemework/dart.cancellation/issues
 documentation: https://freemework.org/#cancellation?lang=dart
 
 environment:
