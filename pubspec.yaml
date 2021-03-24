@@ -1,15 +1,16 @@
 name: freemework_cancellation
-description: Freemework
+description: Set of various cancellation token sources of the Freemework
 version: 0.0.1
-author: "Freemework.ORG <devel@freemework.org>"
 homepage: https://freemework.org
+repository: https://github.com/freemework/dart
+issue_tracker: https://github.com/freemework/dart/issues
+documentation: https://freemework.org/#cancellation?lang=dart
 
 environment:
   sdk: '>=2.10.5 <3.0.0'
 
 dependencies:
-  freemework:
-    path: ../freemework.dart
+  freemework: ^0.0.1
 
 dev_dependencies:
   build_runner: ^1.11.1
