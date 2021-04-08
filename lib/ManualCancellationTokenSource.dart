@@ -19,7 +19,7 @@ class ManualCancellationTokenSource implements CancellationTokenSource {
   ManualCancellationTokenSource() : _cancelListeners = [];
 
   @override
-  CancellationToken get token => _SimpleCancellationToken(this);
+  CancellationToken get token => _ManualCancellationToken(this);
 
   @override
   bool get isCancellationRequested => _isCancellationRequested;
@@ -72,13 +72,13 @@ class ManualCancellationTokenSource implements CancellationTokenSource {
   }
 }
 
-class _SimpleCancellationToken implements CancellationToken {
+class _ManualCancellationToken implements CancellationToken {
   final ManualCancellationTokenSource _owner;
 
-  _SimpleCancellationToken(this._owner);
+  _ManualCancellationToken(this._owner);
 
   @override
-  bool get isCancellationRequested => false;
+  bool get isCancellationRequested => _owner.isCancellationRequested;
 
   @override
   void addCancelListener(CancellationCallback cb) {
