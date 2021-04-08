@@ -8,7 +8,7 @@ import 'package:test/test.dart'
     show expect, group, isFalse, isTrue, setUp, tearDown, test;
 
 void main() {
-  group('SimpleCancellationTokenSource tests', () {
+  group('ManualCancellationTokenSource tests', () {
     ManualCancellationTokenSource cts;
 
     setUp(() {
@@ -17,6 +17,21 @@ void main() {
 
     tearDown(() {
       cts = null;
+    });
+
+    test(
+        'Should set isCancellationRequested on both Token Source and its Token',
+        () {
+      final token = cts.token;
+
+      cts.cancel();
+
+      expect(cts.isCancellationRequested, isTrue,
+          reason:
+              'Token Source should have active(true) isCancellationRequested value');
+      expect(token.isCancellationRequested, isTrue,
+          reason:
+              'Token should have active(true) isCancellationRequested value');
     });
 
     test('Should call two cancel-listeners', () {
