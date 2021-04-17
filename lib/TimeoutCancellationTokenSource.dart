@@ -9,7 +9,7 @@ import 'package:freemework/freemework.dart' show InvalidOperationException;
 import 'ManualCancellationTokenSource.dart';
 
 class TimeoutCancellationTokenSource extends ManualCancellationTokenSource {
-  Timer _timeoutHandler;
+  Timer? _timeoutHandler;
 
   TimeoutCancellationTokenSource(Duration timeout) {
     _timeoutHandler = Timer(timeout, _onTimer);
@@ -19,8 +19,9 @@ class TimeoutCancellationTokenSource extends ManualCancellationTokenSource {
 
   @override
   void cancel() {
-    if (_timeoutHandler != null) {
-      _timeoutHandler.cancel();
+    final timeoutHandler = _timeoutHandler;
+    if (timeoutHandler != null) {
+      timeoutHandler.cancel();
       _timeoutHandler = null;
     }
     super.cancel();
@@ -30,11 +31,12 @@ class TimeoutCancellationTokenSource extends ManualCancellationTokenSource {
   /// After call the method, the instance behaves is as `SimpleCancellationTokenSource`
   ///
   void preventTimeout() {
-    if (_timeoutHandler == null) {
+    final timeoutHandler = _timeoutHandler;
+    if (timeoutHandler == null) {
       throw InvalidOperationException('Cannot prevent inactive timeout.');
     }
 
-    _timeoutHandler.cancel();
+    timeoutHandler.cancel();
     _timeoutHandler = null;
   }
 

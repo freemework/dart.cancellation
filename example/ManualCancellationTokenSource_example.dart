@@ -28,7 +28,7 @@ void main() {
 
     // StackTrace of cts.cancel(). This will help to detect where cancellation activates.
     print(
-        'cts.cancel() was called in stackTrace: ${friendlyEx.cancellationOriginException.stackTrace}');
+        'cts.cancel() was called in stackTrace: ${friendlyEx.cancellationOriginException!.stackTrace}');
   });
 
   Future.delayed(Duration(seconds: 5)).then((_) {

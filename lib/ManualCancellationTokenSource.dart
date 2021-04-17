@@ -38,7 +38,7 @@ class ManualCancellationTokenSource implements CancellationTokenSource {
         throw CancellationException();
       } catch (e) {
         // Got stack trace in this way
-        cancellationException = e;
+        cancellationException = e as CancellationException;
       }
 
       final errors = <FreemeworkException>[];

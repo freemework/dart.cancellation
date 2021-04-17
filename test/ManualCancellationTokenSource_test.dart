@@ -9,7 +9,7 @@ import 'package:test/test.dart'
 
 void main() {
   group('ManualCancellationTokenSource tests', () {
-    ManualCancellationTokenSource cts;
+    ManualCancellationTokenSource? cts;
 
     setUp(() {
       cts = ManualCancellationTokenSource();
@@ -22,11 +22,11 @@ void main() {
     test(
         'Should set isCancellationRequested on both Token Source and its Token',
         () {
-      final token = cts.token;
+      final token = cts!.token;
 
-      cts.cancel();
+      cts!.cancel();
 
-      expect(cts.isCancellationRequested, isTrue,
+      expect(cts!.isCancellationRequested, isTrue,
           reason:
               'Token Source should have active(true) isCancellationRequested value');
       expect(token.isCancellationRequested, isTrue,
@@ -38,7 +38,7 @@ void main() {
       var cancelFlag1 = false;
       var cancelFlag2 = false;
 
-      final token = cts.token;
+      final token = cts!.token;
 
       token.addCancelListener((e) {
         cancelFlag1 = true;
@@ -47,7 +47,7 @@ void main() {
         cancelFlag2 = true;
       });
 
-      cts.cancel();
+      cts!.cancel();
 
       expect(cancelFlag1, isTrue);
       expect(cancelFlag2, isTrue);
@@ -57,7 +57,7 @@ void main() {
       var cancelFlag1 = false;
       var cancelFlag2 = false;
 
-      final token = cts.token;
+      final token = cts!.token;
 
       token.addCancelListener((e) {
         cancelFlag1 = true;
@@ -70,7 +70,7 @@ void main() {
       token.addCancelListener(secondListener);
       token.removeCancelListener(secondListener);
 
-      cts.cancel();
+      cts!.cancel();
 
       expect(cancelFlag1, isTrue);
       expect(cancelFlag2, isFalse);
@@ -80,7 +80,7 @@ void main() {
       var cancelFlag1 = 0;
       var cancelFlag2 = 0;
 
-      final token = cts.token;
+      final token = cts!.token;
 
       token.addCancelListener((e) {
         ++cancelFlag1;
@@ -89,13 +89,13 @@ void main() {
         ++cancelFlag2;
       });
 
-      cts.cancel();
-      cts.cancel();
-      cts.cancel();
-      cts.cancel();
-      cts.cancel();
-      cts.cancel();
-      cts.cancel();
+      cts!.cancel();
+      cts!.cancel();
+      cts!.cancel();
+      cts!.cancel();
+      cts!.cancel();
+      cts!.cancel();
+      cts!.cancel();
 
       expect(cancelFlag1, 1);
       expect(cancelFlag2, 1);
